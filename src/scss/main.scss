@@ -1,0 +1,13 @@
+@import "./reset", "./base/font", "./base/variable", "./base/functions", "./base/mixins", "./base/animatoin";
+@import "./components/*";
+@import "./layouts/*";
+
+body {
+  font-family: $font-family;
+}
+
+.container {
+  max-width: 1300px;
+  padding: 0 16px;
+  margin: 0 auto;
+}

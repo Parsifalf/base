@@ -1,0 +1,34 @@
+@use "sass:math";
+
+@function remy($n) {
+  @return calc($n / $default-rem);
+}
+
+// //максимальный размер экранна, предусмотренный в дизайне
+// $maxViewport: 1220;
+
+// //минимальный размер экранна, предусмотренный в дизайне или выведенный практически
+// $minViewport: 280;
+
+
+$default-rem: 16;
+
+//максимальный размер экранна, предусмотренный в дизайне
+$maxViewport: 1440;
+
+//минимальный размер экранна, предусмотренный в дизайне или выведенный практически
+$minViewport: 320;
+
+
+@function clampy($minValue, $maxValue) {
+  $variablePart: (math.div(($maxValue - $minValue), ($maxViewport - $minViewport)));
+  $rem-constant: (math.div(($maxValue - $maxViewport * $variablePart), 16));
+  $vw-constant: 100 * $variablePart;
+
+  @return (clamp((remy($minValue) * 1rem), calc(($rem-constant * 1rem) + ($vw-constant * 1vw)), (remy($maxValue) * 1rem)));
+}
+ 
+
+@function to($px, $em){
+  @return calc($px / $em) * 1em
+}

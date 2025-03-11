@@ -1,0 +1,52 @@
+@mixin respond($device) {
+  @if $device == phone {
+    @media (max-width: 640) {
+      @content;
+    }
+  }
+  @if $device == tab-port {
+    @media (max-width: 900) {
+      @content;
+    }
+  }
+  @if $device == tab-land {
+    @media (max-width: 1200) {
+      @content;
+    }
+  }
+  @if $device == big-screen {
+    @media (min-width: 1800) {
+      @content;
+    }
+  }
+}
+
+
+@mixin retina-img ($image){
+  @media (-webkit-min-device-pixtl-ratio: 2),
+  (min-resolution: 192dpi) {
+    background-image: url($image);
+  }
+}
+
+@mixin tablet(){
+  @media (max-width: 992px){
+    @content;
+  }
+}
+
+@mixin mobile(){
+  @media (max-width: 450px){
+    @content;
+  }
+}
+
+
+//test
+
+$col: 12;
+$offset: 30px;
+
+@mixin size($quantityCols){
+  max-width: calc(100% / $col * $quantityCols - $offset);
+} 
